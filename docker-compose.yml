@@ -1,0 +1,38 @@
+version: "3.7"
+
+services:
+  web:
+    container_name: web
+    # env_file: ./.env
+    build: ./backend/.
+    volumes:
+      - ./backend/:/backend/
+      - static_volume:/backend/static # <-- bind the static volume
+    stdin_open: true
+    tty: true
+    command: gunicorn --bind :8000 backend.wsgi:application
+    networks:
+      - backend_network
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - DJANGO_SETTINGS_MODULE=backend.settings
+
+  backend-server:
+    container_name: nginx-back
+    build:
+      context: ./nginx/.
+      dockerfile: Dockerfile
+    volumes:
+      - static_volume:/backend/static # <-- bind the static volume
+    ports:
+      - "8000:80"
+    depends_on:
+      - web
+    networks:
+      - backend_network
+
+networks:
+  backend_network:
+    driver: bridge
+volumes:
+  static_volume:
