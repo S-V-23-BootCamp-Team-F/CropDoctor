@@ -66,7 +66,7 @@ cd ..
 docker-compose up --build
 ```
 
-### 9. docker-compose.yml 삭제
+### 9. 컨테이너 삭제
 ```
 docker-compose down --volumes
 ```
