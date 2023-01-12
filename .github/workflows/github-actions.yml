@@ -1,5 +1,7 @@
 name: Deploy to EC2
-on: [push]
+on: 
+  push:
+    branches: [develop]
 jobs:
 
   build:
@@ -30,10 +32,10 @@ jobs:
         remote_user: ubuntu
         remote_key: ${{ secrets.KEY }}
 
-    - name: Checkout repository
+    # - name: Checkout repository
     #   uses: actions/checkout@v2
     # - name: Checkout submodules
-      run: git submodule update --init --recursive
+    #   run: git submodule update --init --recursive
 
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@master

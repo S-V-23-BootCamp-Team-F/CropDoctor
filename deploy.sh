@@ -23,5 +23,7 @@ then
   sudo chmod +x /usr/local/bin/docker-compose
 fi
 
+cd /home/ubuntu/srv/ubuntu && git submodule update --init --recursive
+
 echo "start docker-compose up: ubuntu"
 sudo docker-compose -f /home/ubuntu/srv/ubuntu/docker-compose.yml up --build -d
