@@ -13,7 +13,7 @@ jobs:
 
     - name: create env file
       run: |
-        touch .env
+        touch ./backend/.env
         echo "${{ secrets.ENV_VARS }}" >> .env
     - name: create remote directory
       uses: appleboy/ssh-action@master
@@ -21,7 +21,7 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ubuntu
         key: ${{ secrets.KEY }}
-        script: mkdir -p /home/ubuntu/srv/ubuntu/backend
+        script: mkdir -p /home/ubuntu/srv/ubuntu
 
     - name: copy source via ssh key
       uses: burnett01/rsync-deployments@4.1
