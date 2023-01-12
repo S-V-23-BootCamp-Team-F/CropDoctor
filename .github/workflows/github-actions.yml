@@ -30,10 +30,10 @@ jobs:
         remote_user: ubuntu
         remote_key: ${{ secrets.KEY }}
     
-    - name: Checkout
-      uses: actions/checkout@v1
+    - name: Checkout repository
+      uses: actions/checkout@v2
       with:
-        submodules: true
+        submodules: recursive
 
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@master
