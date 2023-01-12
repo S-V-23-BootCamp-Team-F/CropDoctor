@@ -24,6 +24,6 @@ then
 fi
 
 cd /home/ubuntu/srv/ubuntu && git submodule update --init --recursive
-
+mv /home/ubuntu/srv/ubuntu/.env /home/ubuntu/srv/ubuntu/backend/
 echo "start docker-compose up: ubuntu"
 sudo docker-compose -f /home/ubuntu/srv/ubuntu/docker-compose.yml up --build -d
