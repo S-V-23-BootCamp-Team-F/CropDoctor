@@ -32,16 +32,9 @@ git clone https://github.com/S-V-23-BootCamp-Team-F/docker.git
 cd docker
 ```
 
-### 3. backend repo git clone 하기
-- 서브모듈 아직 안됨 -> backend 폴더 삭제 후 clone해주기! (추후 수정 예정)
+### 3. 업데이트하기
 ```
-git clone https://github.com/S-V-23-BootCamp-Team-F/backend.git
-```
-
-### 4. frontend repo git clone 하기
-- 서브모듈 아직 안됨 -> frontend 폴더 삭제 후 clone해주기! (추후 수정 예정)
-```
-git clone https://github.com/S-V-23-BootCamp-Team-F/frontend.git
+git submodule foreach 'git pull'
 ```
 
 ### 5. backend 디렉터리 경로 이동 후 .env 파일 확인
