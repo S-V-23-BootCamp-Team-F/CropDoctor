@@ -29,6 +29,11 @@ jobs:
         remote_host: ${{ secrets.HOST }}
         remote_user: ubuntu
         remote_key: ${{ secrets.KEY }}
+    
+    - name: Checkout
+      uses: actions/checkout@v1
+      with:
+        submodules: true
 
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@master
