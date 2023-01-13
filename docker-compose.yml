@@ -31,6 +31,33 @@ services:
     networks:
       - backend_network
 
+  rabbitmq:
+    image: rabbitmq:3.7-management
+    container_name: 'rabbitmq'
+    ports:
+      - 5672:5672
+      - 15672:15672
+    expose:
+      - 5672
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    depends_on:
+      - web
+    tty: true
+
+  celery:
+    build:
+      context: ./backend
+    volumes:
+      - ./backend:/backend
+    # entrypoint: "/bin/sh ./run-celery.sh"   # 이게 뭘까
+    command: "celery -A backend worker --loglevel=info"
+    depends_on:
+      - web
+      - rabbitmq
+    tty: true
+
 networks:
   backend_network:
     driver: bridge
