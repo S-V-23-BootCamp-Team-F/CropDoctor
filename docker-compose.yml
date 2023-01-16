@@ -82,7 +82,7 @@ services:
     environment:
       - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//
     command: >
-      bash -c "celery -A backend worker --loglevel=info"
+      bash -c "celery -A backend worker --loglevel=info --pool=solo"
     networks:
       - backend_network
     depends_on:
