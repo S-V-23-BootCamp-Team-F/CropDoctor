@@ -17,6 +17,15 @@ services:
       - CHOKIDAR_USEPOLLING=true
       - DJANGO_SETTINGS_MODULE=backend.settings
 
+  frontend:
+    container_name: wb-frontend
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/:/wb-frontend
+      - ./frontend/node_modules/:/wb-frontend/node_modules
+
   backend-server:
     container_name: nginx-back
     build:
@@ -38,10 +47,10 @@ services:
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+      - "--config.file=/etc/prometheus/prometheus.yml"
     depends_on:
       - web
-    networks: 
+    networks:
       - backend_network
     expose:
       - 9090
@@ -52,16 +61,16 @@ services:
       - 3333:3000
     depends_on:
       - prometheus
-    networks: 
+    networks:
       - backend_network
-  
+
   rabbitmq:
     image: rabbitmq:3.7-management
-    container_name: 'rabbitmq'
+    container_name: "rabbitmq"
     ports:
-      # Expose the port for the worker to add/get tasks 
+      # Expose the port for the worker to add/get tasks
       - 5672:5672
-      # OPTIONAL: Expose the GUI port  
+      # OPTIONAL: Expose the GUI port
       - 15672:15672
     expose:
       - 5672
@@ -89,7 +98,6 @@ services:
       - web
       - rabbitmq
     tty: true
-
 
 networks:
   backend_network:
