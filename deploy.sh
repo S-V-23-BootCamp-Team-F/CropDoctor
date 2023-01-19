@@ -25,7 +25,7 @@ fi
 echo "start submoudle update"
 cd /home/ubuntu/srv/ubuntu
 sudo git submodule init
-sudo submodule update --recursive --remote --merge
+sudo git submodule update --recursive --remote --merge
 sudo mv /home/ubuntu/srv/ubuntu/.env /home/ubuntu/srv/ubuntu/backend/
 echo "start docker-compose up: ubuntu"
 sudo docker-compose -f /home/ubuntu/srv/ubuntu/docker-compose.yml up --build -d
