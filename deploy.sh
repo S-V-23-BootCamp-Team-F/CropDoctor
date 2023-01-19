@@ -23,6 +23,7 @@ then
   sudo chmod +x /usr/local/bin/docker-compose
 fi
 echo "start submoudle update"
+cd /home/ubuntu/srv/ubuntu
 sudo git submodule init
 sudo git submodule update --recursive --remote --merge
 sudo mv /home/ubuntu/srv/ubuntu/.env /home/ubuntu/srv/ubuntu/backend/
