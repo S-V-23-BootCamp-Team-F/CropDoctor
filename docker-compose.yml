@@ -89,6 +89,19 @@ services:
       - 9100:9100
     networks:
       - backend_network
+
+  alertmanager:
+    image: prom/alertmanager:latest
+    ports:
+      - 9093:9093
+    restart: always
+    volumes:
+      - ./alertmanager/:/etc/alertmanager/
+    networks:
+      - backend_network
+    
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
   
   # nginx-exporter:
   #   image: nginx/nginx-prometheus-exporter:0.10.0
