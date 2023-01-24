@@ -7,24 +7,12 @@ global:
   # Attach these labels to any time series or alerts when communicating with
   # external systems (federation, remote storage, Alertmanager).
   external_labels:
-    monitor: "my-project"
+    monitor: "crop-doctor"
 
 # Load and evaluate rules in this file every 'evaluation_interval' seconds.
 rule_files:
   - "./alert.yml"
-  # - "first.rules"
-  # - "second.rules"
 
-# alert
-# alerting:
-#   alertmanagers:
-#     - scheme: http
-#       static_configs:
-#         - targets:
-#             - "alertmanager:9093"
-
-# A scrape configuration containing exactly one endpoint to scrape:
-# Here it's Prometheus itself.
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
 
@@ -34,7 +22,6 @@ scrape_configs:
     scrape_interval: 10s
     
     static_configs:
-      # - targets: ["localhost:9090"]
       - targets: ["prometheus:9090"]
 
   # - job_name: "cadvisor"
@@ -57,8 +44,8 @@ scrape_configs:
     static_configs:
       - targets: ['backend:8000']
 
-    # dns_sd_configs:
-    #   - names: ["backend"]
-    #     port: 8000
-    #     type: A
-    #     refresh_interval: 5s
+  # - job_name: 'nginx-prometheus-test'
+  #   scrape_interval: 1m
+  #   metrics_path: '/prometheus'
+  #   static_configs:
+  #     - targets: ['127.0.0.1:9113']
