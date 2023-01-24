@@ -89,17 +89,14 @@ services:
       - 9100:9100
     networks:
       - backend_network
-
-  cadvisor:
-    image: gcr.io/google-containers/cadvisor:v0.33.0
-    privileged: true
-    ports:
-      - '8090:8090'
-    volumes:
-      - /:/rootfs:ro
-      - /var/run:/var/run:rw
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-      - /dev/disk:/dev/disk:ro
+  
+  # nginx-exporter:
+  #   image: nginx/nginx-prometheus-exporter:0.10.0
+  #   command:
+  #     - -nginx.scrape-uri
+  #     - http://127.0.0.1:80/stub_status
+  #   ports:
+  #     - 9113:9113
 
   # cadvisor:
   #   image: gcr.io/cadvisor/cadvisor:v0.38.7
