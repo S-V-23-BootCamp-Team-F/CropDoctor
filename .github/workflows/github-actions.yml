@@ -16,6 +16,11 @@ jobs:
         touch .env
         echo "${{ secrets.ENV_VARS }}" >> .env
 
+    - name: create config file
+      run: |
+        touch config.yml
+        echo "${{ secrets.ALERT_CONFIG}}" >> config.yml
+
     - name: create remote directory
       uses: appleboy/ssh-action@master
       with:
@@ -23,11 +28,6 @@ jobs:
         username: ubuntu
         key: ${{ secrets.KEY }}
         script: mkdir -p /home/ubuntu/srv/ubuntu
-
-    - name: create config file
-      run: |
-        touch config.yml
-        echo "${{ secrets.ALERT_CONFIG}}" >> config.yml
 
     # - name: change chown
     #   run: |
