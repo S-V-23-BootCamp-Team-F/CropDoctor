@@ -9,4 +9,4 @@ groups:
     labels:
       severity: 'critical'
     annotations:
-      summary: 'Error Status Code Bigger than 10 And Fail Rate Higher than 50%'
+      summary: 'django_http_requests_total_by_method_total'
