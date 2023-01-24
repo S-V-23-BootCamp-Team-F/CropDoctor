@@ -1,0 +1,10 @@
+route:
+  receiver: 'slack'
+
+receivers:
+  - name: 'slack'
+    slack_configs:
+      - send_resolved: true
+        username: 'grafana-alter'
+        channel: '${{ secrets.CHANNEL }}'
+        api_url: '${{ secrets.API_URL }}'
