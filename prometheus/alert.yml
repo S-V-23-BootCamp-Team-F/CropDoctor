@@ -1,0 +1,12 @@
+groups:
+- name: alert
+  rules:
+  - alert: ErrorStatusAndFailRate
+    expr: | 
+      django_http_requests_total_by_method_total{method="POST"}>=5
+
+    for: 1m
+    labels:
+      severity: 'critical'
+    annotations:
+      summary: 'Error Status Code Bigger than 10 And Fail Rate Higher than 50%'

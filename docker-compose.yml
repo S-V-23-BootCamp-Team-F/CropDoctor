@@ -1,8 +1,15 @@
 version: "3.7"
 
+# port : 호스트 OS와 컨테이너의 포트를 바인딩 시켜준다.
+# expose : 호스트 OS에 포트를 공개하지 않고, 컨테이너만 공개
+#    - 호스트 OS에 직접 연결되지 않고 링크등으로 연결된 컨테이너-컨테이너간의 통신만 필요한 경우 사용
+# depends_on : 서비스간의 종속성 순서대로 서비스를 시작 
+# container_name : 컨테이너 이름을 지정
+# volumes : docker 컨테이너의 생명 주기와 관계없이 데이터를 영속적으로 저장
+
 services:
-  web:
-    container_name: web
+  backend:
+    container_name: backend
     # env_file: ./.env
     build: ./backend/.
     volumes:
@@ -37,20 +44,22 @@ services:
       - "80:8080"
       - "433:433"
     depends_on:
-      - web
+      - backend
     networks:
       - backend_network
 
   prometheus:
     image: prom/prometheus:latest
+    restart: unless-stopped
     ports:
       - 9090:9090
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/:/etc/prometheus/
+      
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
     depends_on:
-      - web
+      - backend
     networks:
       - backend_network
     expose:
@@ -60,10 +69,56 @@ services:
     image: grafana/grafana:latest
     ports:
       - 3333:3000
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=grafana
     depends_on:
+      - backend
       - prometheus
+    volumes:
+      - ./data/grafana:/var/lib/grafana
     networks:
       - backend_network
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter # 컨테이너를 stop시키기 전까지 항상 재시작
+    restart: unless-stopped
+    ports:
+      - 9100:9100
+    networks:
+      - backend_network
+  
+  # nginx-exporter:
+  #   image: nginx/nginx-prometheus-exporter:0.10.0
+  #   command:
+  #     - -nginx.scrape-uri
+  #     - http://127.0.0.1:80/stub_status
+  #   ports:
+  #     - 9113:9113
+
+  # cadvisor:
+  #   image: gcr.io/cadvisor/cadvisor:v0.38.7
+  #   container_name: cadvisor
+  #   restart: unless-stopped
+  #   command:
+  #     - '--disable_metrics=hugetlb'
+  #     - '--disable_metrics=referenced_memory'
+  #   privileged: true
+  #   ports:
+  #     - 8089:8089
+  #   volumes:
+  #     - '/:/rootfs:ro'
+  #     - '/var/run:/var/run:ro'
+  #     - '/sys:/sys:ro'
+  #     - '/var/lib/docker/:/var/lib/docker:ro'
+  #     - '/dev/disk/:/dev/disk:ro'
+  #     - /etc/machine-id:/etc/machine-id:ro
+  #   networks:
+  #     - backend_network
+  #   devices:
+  #     - /dev/kmsg:/dev/kmsg
 
   rabbitmq:
     image: rabbitmq:3.7-management
@@ -78,7 +133,7 @@ services:
     environment:
       - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//
     depends_on:
-      - web
+      - backend
     networks:
       - backend_network
     tty: true
@@ -96,8 +151,8 @@ services:
     networks:
       - backend_network
     depends_on:
-      - web
       - rabbitmq
+      - backend
     tty: true
 
 networks:
