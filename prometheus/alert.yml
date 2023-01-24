@@ -3,13 +3,8 @@ groups:
   rules:
   - alert: ErrorStatusAndFailRate
     expr: | 
-      sum(rate(nginx_http_response_count_total{status=~"2.."}[1m])) >= 1
-      and
-      (
-        sum(rate(nginx_http_response_count_total{status=~"2.."}[1m])) 
-        / 
-        sum(rate(nginx_http_response_count_total[1m])) * 100
-      ) >= 50
+      django_http_requests_total_by_method_total{method="POST"}>=5
+
     for: 1m
     labels:
       severity: 'critical'
