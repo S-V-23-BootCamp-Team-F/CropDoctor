@@ -24,7 +24,8 @@ jobs:
         script: mkdir -p /home/ubuntu/srv/ubuntu
 
     - name: change chown
-      script: sudo chown -R ubuntu:ubuntu /home/ubuntu/srv
+      run: |
+        sudo chown -R ubuntu:ubuntu /home/ubuntu/srv
 
     - name: copy source via ssh key
       uses: burnett01/rsync-deployments@4.1
