@@ -26,8 +26,8 @@ jobs:
 
     - name: create config file
       run: |
-        sudo touch /home/ubuntu/srv/ubuntu/alertmanager/config.yml
-        sudo echo "${{ secrets.ALERT_CONFIG}}" >> /home/ubuntu/srv/ubuntu/alertmanager/config.yml
+        touch config.yml
+        echo "${{ secrets.ALERT_CONFIG}}" >> config.yml
 
     # - name: change chown
     #   run: |
