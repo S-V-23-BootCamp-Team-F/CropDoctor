@@ -1,0 +1,2 @@
+192.168.208.1 - - [24/Jan/2023:18:47:11 +0000] "GET / HTTP/1.1" 404 2897 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" "-"
+192.168.208.1 - - [24/Jan/2023:18:48:39 +0000] "GET /api/v1/plants/ais/?picture=tomato1.webp&type=5 HTTP/1.1" 502 157 "-" "PostmanRuntime/7.30.0" "-"

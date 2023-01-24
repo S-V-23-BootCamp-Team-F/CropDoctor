@@ -1,0 +1,1 @@
+2023/01/24 18:48:39 [error] 7#7: *4 upstream prematurely closed connection while reading response header from upstream, client: 192.168.208.1, server: , request: "GET /api/v1/plants/ais/?picture=tomato1.webp&type=5 HTTP/1.1", upstream: "http://192.168.208.3:8000/api/v1/plants/ais/?picture=tomato1.webp&type=5", host: "localhost"
