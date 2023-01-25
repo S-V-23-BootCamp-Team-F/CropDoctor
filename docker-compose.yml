@@ -43,7 +43,7 @@ services:
       - ./nginx/log:/var/log/nginx # nginx log path (require same option on nginx container)
     ports:
       - "80:8080"
-      - "433:433"
+      - "443:443"
     depends_on:
       - backend
     networks:
