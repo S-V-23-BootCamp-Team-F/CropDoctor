@@ -24,6 +24,7 @@ then
 fi
 echo "start submoudle update"
 cd /home/ubuntu/srv/ubuntu
+mkdir alertmanager
 sudo git submodule init
 sudo git submodule update --recursive --remote --merge
 sudo mv /home/ubuntu/srv/ubuntu/.env /home/ubuntu/srv/ubuntu/backend/
