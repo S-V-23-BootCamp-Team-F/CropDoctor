@@ -1,5 +1,4 @@
 version: "3.7"
-user: root
 
 # port : 호스트 OS와 컨테이너의 포트를 바인딩 시켜준다.
 # expose : 호스트 OS에 포트를 공개하지 않고, 컨테이너만 공개
