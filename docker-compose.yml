@@ -35,7 +35,7 @@ services:
       - static_volume:/backend/static # <-- bind the static volume
     ports:
       - "80:8080"
-      - "433:433"
+      - "443:443"
     depends_on:
       - web
     networks:
