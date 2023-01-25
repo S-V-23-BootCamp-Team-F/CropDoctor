@@ -17,21 +17,25 @@ services:
       - static_volume:/backend/static # <-- bind the static volume
     stdin_open: true
     tty: true
-    command: gunicorn --bind :8000 backend.wsgi:application
+    ports:
+      - 8000:8000
+    command : sh -c "python manage.py migrate && gunicorn --bind :8000 backend.wsgi:application"
     networks:
       - backend_network
     environment:
       - CHOKIDAR_USEPOLLING=true
       - DJANGO_SETTINGS_MODULE=backend.settings
+    expose:
+      - 8000
 
   frontend:
-    container_name: wb-frontend
+    container_name: frontend
     build: ./frontend
-    ports:
-      - "3000:3000"
     volumes:
-      - ./frontend/:/wb-frontend
-      - ./frontend/node_modules/:/wb-frontend/node_modules
+      - ./frontend/:/frontend
+      - build_folder:/frontend/dist
+      - ./frontend/node_modules/:/frontend/node_modules
+    tty: true
 
   backend-server:
     container_name: nginx-back
@@ -40,12 +44,16 @@ services:
       dockerfile: Dockerfile
     volumes:
       - static_volume:/backend/static # <-- bind the static volume
-      - ./nginx/log:/var/log/nginx # nginx log path (require same option on nginx container)
+      - build_folder:/var/www/frontend
     ports:
-      - "80:8080"
-      - "443:443"
+      - "80:80"
+      # - "443:443"
+      - ./nginx/log:/var/log/nginx # nginx log path (require same option on nginx container)
     depends_on:
       - backend
+    expose:
+      - 80
+      # - 443
     networks:
       - backend_network
 
@@ -111,36 +119,7 @@ services:
     command:
       - '--config.file=/etc/alertmanager/config.yml'
       - '--storage.path=/alertmanager'
-  # nginx-exporter:
-  #   image: nginx/nginx-prometheus-exporter:0.10.0
-  #   command:
-  #     - -nginx.scrape-uri
-  #     - http://127.0.0.1:80/stub_status
-  #   ports:
-  #     - 9113:9113
-
-  # cadvisor:
-  #   image: gcr.io/cadvisor/cadvisor:v0.38.7
-  #   container_name: cadvisor
-  #   restart: unless-stopped
-  #   command:
-  #     - '--disable_metrics=hugetlb'
-  #     - '--disable_metrics=referenced_memory'
-  #   privileged: true
-  #   ports:
-  #     - 8089:8089
-  #   volumes:
-  #     - '/:/rootfs:ro'
-  #     - '/var/run:/var/run:ro'
-  #     - '/sys:/sys:ro'
-  #     - '/var/lib/docker/:/var/lib/docker:ro'
-  #     - '/dev/disk/:/dev/disk:ro'
-  #     - /etc/machine-id:/etc/machine-id:ro
-  #   networks:
-  #     - backend_network
-  #   devices:
-  #     - /dev/kmsg:/dev/kmsg
-
+      
   rabbitmq:
     image: rabbitmq:3.7-management
     container_name: "rabbitmq"
@@ -252,6 +231,7 @@ networks:
   backend_network:
     driver: bridge
 volumes:
+  build_folder: null
   static_volume:
   # 인스턴스에 대해 데이터를 영구적으로 유지하기 위해 2개의 볼륨 사용
   prometheus_data: {}
