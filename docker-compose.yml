@@ -48,6 +48,7 @@ services:
     ports:
       - "80:80"
       # - "443:443"
+      - ./nginx/log:/var/log/nginx # nginx log path (require same option on nginx container)
     depends_on:
       - backend
     expose:
@@ -104,7 +105,7 @@ services:
       - 9100:9100
     networks:
       - backend_network
-
+      
   alertmanager:
     image: prom/alertmanager:latest
     ports:
@@ -118,36 +119,7 @@ services:
     command:
       - '--config.file=/etc/alertmanager/config.yml'
       - '--storage.path=/alertmanager'
-  # nginx-exporter:
-  #   image: nginx/nginx-prometheus-exporter:0.10.0
-  #   command:
-  #     - -nginx.scrape-uri
-  #     - http://127.0.0.1:80/stub_status
-  #   ports:
-  #     - 9113:9113
-
-  # cadvisor:
-  #   image: gcr.io/cadvisor/cadvisor:v0.38.7
-  #   container_name: cadvisor
-  #   restart: unless-stopped
-  #   command:
-  #     - '--disable_metrics=hugetlb'
-  #     - '--disable_metrics=referenced_memory'
-  #   privileged: true
-  #   ports:
-  #     - 8089:8089
-  #   volumes:
-  #     - '/:/rootfs:ro'
-  #     - '/var/run:/var/run:ro'
-  #     - '/sys:/sys:ro'
-  #     - '/var/lib/docker/:/var/lib/docker:ro'
-  #     - '/dev/disk/:/dev/disk:ro'
-  #     - /etc/machine-id:/etc/machine-id:ro
-  #   networks:
-  #     - backend_network
-  #   devices:
-  #     - /dev/kmsg:/dev/kmsg
-
+      
   rabbitmq:
     image: rabbitmq:3.7-management
     container_name: "rabbitmq"
@@ -182,6 +154,78 @@ services:
       - rabbitmq
       - backend
     tty: true
+  
+  elasticsearch:
+    build:
+      context: ./elk/elasticsearch
+      args:
+        ELASTIC_VERSION: 8.5.2
+    volumes:
+      - ./elk/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro,Z
+      - elasticsearch:/usr/share/elasticsearch/data:Z
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      node.name: elasticsearch
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+      # Bootstrap password.
+      # Used to initialize the keystore during the initial startup of
+      # Elasticsearch. Ignored on subsequent runs.
+      ELASTIC_PASSWORD: changeme
+      # Use single node discovery in order to disable production mode and avoid bootstrap checks.
+      # see: https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
+      discovery.type: single-node
+    restart: unless-stopped
+
+  logstash:
+    build:
+      context: ./elk/logstash
+      args:
+        ELASTIC_VERSION: 8.5.2
+    volumes:
+      - ./elk/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro,Z
+      - ./elk/logstash/pipeline:/usr/share/logstash/pipeline:ro,Z
+    ports:
+      - 5044:5044
+      - 50000:50000/tcp
+      - 50000:50000/udp
+      - 9600:9600
+    environment:
+      LS_JAVA_OPTS: -Xms256m -Xmx256m
+      LOGSTASH_INTERNAL_PASSWORD: changeme
+    depends_on:
+      - elasticsearch
+    restart: unless-stopped
+
+  kibana:
+    build:
+      context: ./elk/kibana
+      args:
+        ELASTIC_VERSION: 8.5.2
+    volumes:
+      - ./elk/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml:ro,Z
+    ports:
+      - 5601:5601
+    environment:
+      KIBANA_SYSTEM_PASSWORD: changeme
+    depends_on:
+      - elasticsearch
+    restart: unless-stopped
+
+  filebeat:
+    build:
+      context: ./elk/filebeat
+      args:
+        ELASTIC_VERSION: 8.5.2
+    entrypoint: "filebeat -e -strict.perms=false"
+    volumes:
+      - ./elk/filebeat/config/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - ./nginx/log:/var/log/nginx # nginx log path (require same option on nginx container)
+    depends_on:
+      - logstash
+      - elasticsearch
+      - kibana
 
 networks:
   backend_network:
@@ -192,3 +236,4 @@ volumes:
   # 인스턴스에 대해 데이터를 영구적으로 유지하기 위해 2개의 볼륨 사용
   prometheus_data: {}
   grafana_data: {}
+  elasticsearch:
