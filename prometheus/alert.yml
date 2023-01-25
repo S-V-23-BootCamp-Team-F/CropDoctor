@@ -1,14 +1,13 @@
 groups:
 - name: alert
   rules:
-  - alert: ErrorStatusAndFailRate
+  - alert: monitor_service_down
     expr: | 
-      up{job="node-exporter"} == 0
-    for: 1m
+      up == 0
+    for: 30s
     labels:
-        severity: warning
+        severity: critical
     annotations:
         title: Node {{ $labels.instance }} is down
-        description: Failed to scrape {{ $labels.job }} on {{ $labels.instance }} for more than 3 minutes. Node seems down.
-        summary: 'Error Status Code Bigger than 10 And Fail Rate Higher than 50%'
-
+        summary: "Monitor service non-operational"
+        description: "Service {{ $labels.instance }} is down."
