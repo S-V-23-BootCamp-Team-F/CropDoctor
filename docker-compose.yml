@@ -89,7 +89,7 @@ services:
       - 9100:9100
     networks:
       - backend_network
-
+      
   alertmanager:
     image: prom/alertmanager:latest
     ports:

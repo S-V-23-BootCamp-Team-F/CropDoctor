@@ -4,9 +4,11 @@ groups:
   - alert: ErrorStatusAndFailRate
     expr: | 
       up{job="node-exporter"} == 0
-    for: 3m
+    for: 1m
     labels:
         severity: warning
     annotations:
         title: Node {{ $labels.instance }} is down
         description: Failed to scrape {{ $labels.job }} on {{ $labels.instance }} for more than 3 minutes. Node seems down.
+        summary: 'Error Status Code Bigger than 10 And Fail Rate Higher than 50%'
+
