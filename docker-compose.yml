@@ -54,10 +54,15 @@ services:
     ports:
       - 9090:9090
     volumes:
-      - ./prometheus/:/etc/prometheus/
-      
+      - ./prometheus:/etc/prometheus
+      - prometheus_data:/prometheus
     command:
-      - "--config.file=/etc/prometheus/prometheus.yml"
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
     depends_on:
       - backend
     networks:
@@ -73,11 +78,13 @@ services:
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=grafana
+      - GF_USERS_ALLOW_SIGN_UP=false
     depends_on:
       - backend
       - prometheus
     volumes:
-      - ./data/grafana:/var/lib/grafana
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
     networks:
       - backend_network
 
@@ -102,7 +109,7 @@ services:
     
     command:
       - '--config.file=/etc/alertmanager/config.yml'
-  
+      - '--storage.path=/alertmanager'
   # nginx-exporter:
   #   image: nginx/nginx-prometheus-exporter:0.10.0
   #   command:
