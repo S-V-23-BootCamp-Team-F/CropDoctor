@@ -3,10 +3,10 @@ groups:
   rules:
   - alert: ErrorStatusAndFailRate
     expr: | 
-      django_http_requests_total_by_method_total{method="POST"}>=5
-
-    for: 1m
+      up{job="node-exporter"} == 0
+    for: 3m
     labels:
-      severity: 'critical'
+        severity: warning
     annotations:
-      summary: 'django_http_requests_total_by_method_total'
+        title: Node {{ $labels.instance }} is down
+        description: Failed to scrape {{ $labels.job }} on {{ $labels.instance }} for more than 3 minutes. Node seems down.
