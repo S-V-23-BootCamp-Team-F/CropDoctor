@@ -3,7 +3,7 @@ version: "3.7"
 # port : 호스트 OS와 컨테이너의 포트를 바인딩 시켜준다.
 # expose : 호스트 OS에 포트를 공개하지 않고, 컨테이너만 공개
 #    - 호스트 OS에 직접 연결되지 않고 링크등으로 연결된 컨테이너-컨테이너간의 통신만 필요한 경우 사용
-# depends_on : 서비스간의 종속성 순서대로 서비스를 시작 
+# depends_on : 서비스간의 종속성 순서대로 서비스를 시작
 # container_name : 컨테이너 이름을 지정
 # volumes : docker 컨테이너의 생명 주기와 관계없이 데이터를 영속적으로 저장
 
@@ -19,7 +19,7 @@ services:
     tty: true
     ports:
       - 8000:8000
-    command : sh -c "python manage.py migrate && gunicorn --bind :8000 backend.wsgi:application"
+    command: sh -c "python manage.py migrate && gunicorn --bind :8000 backend.wsgi:application"
     networks:
       - backend_network
     environment:
@@ -45,15 +45,15 @@ services:
     volumes:
       - static_volume:/backend/static # <-- bind the static volume
       - build_folder:/var/www/frontend
+      - ./nginx/log:/var/log/nginx # nginx log path (require same option on nginx container)
     ports:
       - "80:80"
       # - "443:443"
-
     depends_on:
       - backend
     expose:
       - 80
-      # - 443
+      - 443
     networks:
       - backend_network
 
@@ -66,12 +66,12 @@ services:
       - ./prometheus:/etc/prometheus
       - prometheus_data:/prometheus
     command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.path=/prometheus'
-      - '--web.console.libraries=/etc/prometheus/console_libraries'
-      - '--web.console.templates=/etc/prometheus/consoles'
-      - '--storage.tsdb.retention.time=200h'
-      - '--web.enable-lifecycle'
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/etc/prometheus/console_libraries"
+      - "--web.console.templates=/etc/prometheus/consoles"
+      - "--storage.tsdb.retention.time=200h"
+      - "--web.enable-lifecycle"
     depends_on:
       - backend
     networks:
@@ -105,49 +105,20 @@ services:
       - 9100:9100
     networks:
       - backend_network
-      
+
   alertmanager:
     image: prom/alertmanager:latest
     ports:
       - 9093:9093
-    restart: always 
+    restart: always
     volumes:
       - ./alertmanager/:/etc/alertmanager/
     networks:
       - backend_network
-    
-    command:
-      - '--config.file=/etc/alertmanager/config.yml'
-      - '--storage.path=/alertmanager'
-  # nginx-exporter:
-  #   image: nginx/nginx-prometheus-exporter:0.10.0
-  #   command:
-  #     - -nginx.scrape-uri
-  #     - http://127.0.0.1:80/stub_status
-  #   ports:
-  #     - 9113:9113
 
-  # cadvisor:
-  #   image: gcr.io/cadvisor/cadvisor:v0.38.7
-  #   container_name: cadvisor
-  #   restart: unless-stopped
-  #   command:
-  #     - '--disable_metrics=hugetlb'
-  #     - '--disable_metrics=referenced_memory'
-  #   privileged: true
-  #   ports:
-  #     - 8089:8089
-  #   volumes:
-  #     - '/:/rootfs:ro'
-  #     - '/var/run:/var/run:ro'
-  #     - '/sys:/sys:ro'
-  #     - '/var/lib/docker/:/var/lib/docker:ro'
-  #     - '/dev/disk/:/dev/disk:ro'
-  #     - /etc/machine-id:/etc/machine-id:ro
-  #   networks:
-  #     - backend_network
-  #   devices:
-  #     - /dev/kmsg:/dev/kmsg
+    command:
+      - "--config.file=/etc/alertmanager/config.yml"
+      - "--storage.path=/alertmanager"
 
   rabbitmq:
     image: rabbitmq:3.7-management
@@ -183,7 +154,7 @@ services:
       - rabbitmq
       - backend
     tty: true
-  
+
   elasticsearch:
     build:
       context: ./elk/elasticsearch
