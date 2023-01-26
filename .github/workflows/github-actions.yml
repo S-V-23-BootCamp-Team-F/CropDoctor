@@ -15,6 +15,12 @@ jobs:
       run: |
         touch .env
         echo "${{ secrets.ENV_VARS }}" >> .env
+
+    - name: create config file
+      run: |
+        touch config.yml
+        echo "${{ secrets.ALERT_CONFIG}}" >> config.yml
+
     - name: create remote directory
       uses: appleboy/ssh-action@master
       with:
@@ -22,6 +28,10 @@ jobs:
         username: ubuntu
         key: ${{ secrets.KEY }}
         script: mkdir -p /home/ubuntu/srv/ubuntu
+
+    # - name: change chown
+    #   run: |
+    #     sudo chown -R ubuntu:ubuntu /home/ubuntu/srv
 
     - name: copy source via ssh key
       uses: burnett01/rsync-deployments@4.1
