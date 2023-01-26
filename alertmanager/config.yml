@@ -1,0 +1,10 @@
+route:
+  receiver: 'slack'
+
+receivers:
+  - name: 'slack'
+    slack_configs:
+      - send_resolved: true
+        username: 'grafana-alter'
+        channel: '#alter-grafana'
+        api_url: 'https://hooks.slack.com/services/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'
