@@ -7,4 +7,4 @@ receivers:
       - send_resolved: true
         username: 'grafana-alter'
         channel: '#alter-grafana'
-        api_url: 'https://hooks.slack.com/services/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'
+        api_url: 'https://hooks.slack.com/services/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'
