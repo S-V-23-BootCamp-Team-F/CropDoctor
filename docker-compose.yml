@@ -12,6 +12,7 @@ services:
     container_name: backend
     # env_file: ./.env
     build: ./backend/.
+    image: backend
     volumes:
       - ./backend/:/backend/
       - static_volume:/backend/static # <-- bind the static volume
@@ -140,8 +141,7 @@ services:
 
   celery:
     container_name: celery_service
-    build:
-      context: ./backend
+    image: backend
     volumes:
       - ./backend:/backend
     environment:
