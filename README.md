@@ -20,6 +20,10 @@
 
 <br>
 
+## 💿 DB ERD
+![image](https://user-images.githubusercontent.com/83527046/215852342-d3df83df-1d34-4d1a-a455-43288aba2c34.png)
+
+
 ## 💻 Installation Process
 > <b>Docker repository clone </b>
 
