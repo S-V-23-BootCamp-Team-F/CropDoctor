@@ -1,13 +1,11 @@
 # CropDoctor
 
 ![D8771DDC-42B5-42E6-922B-01C0443DB602](https://user-images.githubusercontent.com/83527046/215812755-bda68906-ce2e-41de-b671-4f2a555b3777.png)
-
 <br>
 
 ## 🍀 Introduction
 
 저희 Cropdoctor는 사용자의 작물의 질병을 진단해주는 서비스로 질병에 맞는 해결책을 제시해드립니다. 👩🏻‍🌾 
-
 <br>
 
 ## 📌 System Architecture
