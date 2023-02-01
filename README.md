@@ -15,7 +15,6 @@
 
 ![MacBook Pro 16_ - 1](https://user-images.githubusercontent.com/83527046/215812708-2d8dc494-2d49-4aea-8192-152852902497.png)
 <br>
-<br>
 
 ## 📚 TECH STACKS
 
@@ -220,7 +219,6 @@ docker-compose up —build
 - JWT토큰을 이용한 회원가입/로그인 페이지이다.
 
 <br>
-<br>
 
 **진단/진단결과 페이지**
 
@@ -228,7 +226,6 @@ docker-compose up —build
 
 - 병해작물 이미지를 선택하여 AI로 진단하는 페이지이며, 병해 작물일 경우 원인과 해결책등을 함께 제공한다.
 
-<br>
 <br>
 
 **히스토리/히스토리삭제**
@@ -239,8 +236,22 @@ docker-compose up —build
 - 히스토리 작물의 상세정보를 확인할 수 있고 이를 삭제할 수 있다.
 
 <br>
-<br>
-<br>
+
+**통계 페이지**
+
+![2A005C2A-E092-4315-8DE9-7F42D3C72641](https://user-images.githubusercontent.com/84130518/216145065-275acbcd-2fed-48f2-839c-69294a5dc8e1.gif)
+
+- 여태 Cropdoctor 진단 데이터를 토대로 통계를 나타낸다.
+- 작물 별 질병 수 통계
+  - 작물 별로 어떤 질병에 많이 걸렸는지 바 차트형태로 정보를 제공한다.
+- 월 별 질병 수 통계
+  - 카테고리에서 선택한 작물을 월 별로 질병이 흐름이 어떤지 선 그래프형태로 정보를 제공한다.
+
+
+**반응형 웹페이지**
+
+![반응형](https://user-images.githubusercontent.com/84130518/216141786-cdafcb67-0af9-49cb-9e2c-005e14bac7b2.gif)
+
 
 ## 🖥️ Moniterings
 
@@ -248,15 +259,15 @@ docker-compose up —build
 
 **Kibana Dashboard**
 
-<img  src="https://user-images.githubusercontent.com/97827316/215998031-49fb0c4b-b122-4494-990d-5fe26c0c82f9.png">
+<img src="https://user-images.githubusercontent.com/84130518/216140964-6ae6f082-1a31-4348-8d38-39087ab98a94.png">
 
 <br>
 
-**Grafana Dashboard**
+**Grafana Dashboard & Slack Alert**
 
-<img  src="https://user-images.githubusercontent.com/97827316/215997992-27425c20-445a-4d5b-93aa-6298c9bb2d2b.png">
-
-<br>
+<img  src="https://user-images.githubusercontent.com/84130518/216139014-d7f93579-66dc-4ec5-8e1e-664fa5258372.png">
+만약 Storage 용량이 74.9%가 넘으면 Grafana에서 Slack으로 알람을 보낸다.
+<img width = 320 src="https://user-images.githubusercontent.com/84130518/216139064-aadf8f9b-a746-4322-89f8-543cf4c891fa.png">
 <br>
 
 ## 👥 Our Team
