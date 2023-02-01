@@ -1,4 +1,4 @@
-[한국어](README.md) | [English](README_en.md)
+한국어 | [English](README_en.md)
 
 # CropDoctor
 
