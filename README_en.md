@@ -1,3 +1,5 @@
+[한국어](README.md) | English
+
 # CropDoctor
 
 ![D8771DDC-42B5-42E6-922B-01C0443DB602](https://user-images.githubusercontent.com/83527046/215812755-bda68906-ce2e-41de-b671-4f2a555b3777.png)
