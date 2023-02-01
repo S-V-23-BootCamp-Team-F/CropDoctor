@@ -34,7 +34,7 @@ git clone --recursive https://github.com/S-V-23-BootCamp-Team-F/docker.git
 ```
 SECRET_KEY = {Django SECRET_KEY}
 
-# AWS S3 연동
+# AWS S3 connect
 AWS_ACCESS_KEY = {AWS_ACCESS_KEY}
 AWS_SECRET_KEY = {AWS_SECRET_KEY}
 AWS_REGION = {AWS_REGION}
@@ -211,7 +211,7 @@ docker-compose up —build
 <br>
 <br>
 
-**진단/진단결과 페이지**
+**Diagnostic/Diagnostic Results Page**
 
 <img src="https://user-images.githubusercontent.com/97827316/215984379-20db97b3-e90c-4857-bb46-c457b61b632c.gif">
 
@@ -219,7 +219,7 @@ docker-compose up —build
 
 <br>
 
-**히스토리/히스토리삭제**
+**history / history delete**
 
 <img src="https://user-images.githubusercontent.com/97827316/215984492-50f4e265-a738-41a9-8463-532ddb453c68.gif">
 
@@ -242,7 +242,6 @@ docker-compose up —build
 
 <img  src="https://user-images.githubusercontent.com/97827316/215997992-27425c20-445a-4d5b-93aa-6298c9bb2d2b.png">
 
-<br>
 <br>
 
 ## 👥 Our Team
