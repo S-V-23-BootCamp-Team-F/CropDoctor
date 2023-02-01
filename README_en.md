@@ -5,7 +5,7 @@
 
 ## 🍀 Introduction
 
-Cropdoctor is a service that diagnoses the disease of your crops and offers solutions that fit your disease.👩🏻‍🌾 
+Cropdoctor is a service that diagnosis the disease of your crops and offers solutions that fit your disease.👩🏻‍🌾 
 <br>
 
 ## 📌 System Architecture
@@ -200,4 +200,173 @@ docker-compose up —build
 
 </details>
 
-<br><br>
+## 🔍 Features
+
+**SignUp / Login page**
+
+<img  src="https://user-images.githubusercontent.com/97827316/215984078-3cbe440e-c4bc-4ae3-9a2b-662ec2dae079.gif">
+
+- This is a SignUp / Login page using JWT token.
+
+<br>
+<br>
+
+**진단/진단결과 페이지**
+
+<img src="https://user-images.githubusercontent.com/97827316/215984379-20db97b3-e90c-4857-bb46-c457b61b632c.gif">
+
+- It is a page that selects an image of a disease crop and diagnoses it with AI, and if it is a disease crop, it provides causes and solutions together.
+
+<br>
+
+**히스토리/히스토리삭제**
+
+<img src="https://user-images.githubusercontent.com/97827316/215984492-50f4e265-a738-41a9-8463-532ddb453c68.gif">
+
+- With a function that is only available when logging in, you can collect crops that you have diagnosed by category.
+- You can check the detailed information of the selected crop and delete it.
+
+<br>
+
+## 🖥️ Moniterings
+
+<br>
+
+**Kibana Dashboard**
+
+<img  src="https://user-images.githubusercontent.com/97827316/215998031-49fb0c4b-b122-4494-990d-5fe26c0c82f9.png">
+
+<br>
+
+**Grafana Dashboard**
+
+<img  src="https://user-images.githubusercontent.com/97827316/215997992-27425c20-445a-4d5b-93aa-6298c9bb2d2b.png">
+
+<br>
+<br>
+
+## 👥 Our Team
+
+<table width="1000">
+    <thead>
+    </thead>
+    <tbody>
+    <tr>
+        <th>Pictures</th>
+         <td width="100" align="center">
+            <a href="https://github.com/goldapple-ce">
+                <img src="https://user-images.githubusercontent.com/97827316/215991540-bd09f520-794d-4db2-9bde-955470a96957.png" width="60" height="60">
+            </a>
+        </td>
+        <td width="100" align="center">
+            <a href="https://github.com/jiyoon0701">
+                <img  src="https://user-images.githubusercontent.com/97827316/215991531-8da89dd4-d739-4e37-b5be-2b04c38ec6f3.png" width="60" height="60">
+            </a>
+        </td>
+        <td width="100" align="center">
+            <a href="https://github.com/TMInstaller">
+                <img src="https://user-images.githubusercontent.com/97827316/215991528-8c8a4e08-16ef-46e2-a996-e3a60b937cc3.png" width="60" height="60">
+            </a>
+        </td>
+        <td width="100" align="center">
+            <a href="https://github.com/yura0302">
+                <img src="https://user-images.githubusercontent.com/97827316/215991544-021c3e7a-460b-41a3-a030-2dca6bb0ac20.png" width="60" height="60">
+            </a>
+        </td>
+        <td width="100" align="center">
+            <a href="https://github.com/fnzl54">
+                <img src="https://user-images.githubusercontent.com/97827316/215991516-914ed25d-6759-4478-843c-628a0c6baad1.png" width="60" height="60">
+            </a>
+        </td>
+        <td width="100" align="center">
+            <a href="https://github.com/hstla">
+                <img src="https://user-images.githubusercontent.com/97827316/215991535-aa0d5aeb-363c-41a7-a114-c1448d58d9f1.png" width="60" height="60">
+            </a>
+        </td>
+        <td width="100" align="center">
+            <a href="https://github.com/Mayreeel">
+                <img src="https://user-images.githubusercontent.com/97827316/215991527-9226b9b3-34fa-493b-b2af-c61d15cc13cf.png" width="60" height="60">
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <th>Name</th>
+        <td width="100" align="center">강용민</td>
+        <td width="100" align="center">이지윤</td>
+        <td width="100" align="center">백동열</td>
+        <td width="100" align="center">김유라</td>
+        <td width="100" align="center">권찬영</td>
+        <td width="100" align="center">황현성</td>
+        <td width="100" align="center">이규현</td>
+    </tr>
+    <tr>
+        <th>Position</th>
+        <td width="150" align="center">
+            Backend<br>
+            DevOps<br>
+        </td>
+        <td width="150" align="center">
+            Frontend<br>
+            Backend<br>
+            DevOps<br>
+        </td>
+        <td width="150" align="center">
+            Frontend<br>
+            Backend<br>
+        </td>
+        <td width="150" align="center">
+            Frontend<br>
+        </td>
+        <td width="150" align="center">
+            Backend<br>
+            DevOps<br>
+            AI<br>
+        </td>
+        <td width="150" align="center">
+            Backend<br>
+            DevOps<br>
+        </td>
+        <td width="150" align="center">
+            Frontend<br>
+        </td>
+    </tr>
+    <tr>
+        <th>GitHub</th>
+        <td width="100" align="center">
+            <a href="https://github.com/goldapple-ce">
+                <img src="http://img.shields.io/badge/Kyoungmin1016-green?style=social&logo=github"/>
+            </a>
+        </td>
+        <td width="100" align="center">
+            <a href="https://github.com/jiyoon0701">
+                <img src="http://img.shields.io/badge/jiyoon0701-green?style=social&logo=github"/>
+            </a>
+        </td>
+        <td width="100" align="center">
+            <a href="https://github.com/TMInstaller">
+                <img src="http://img.shields.io/badge/TMInstaller-green?style=social&logo=github"/>
+            </a>
+        </td>
+        <td width="100" align="center">
+            <a href="https://github.com/yura0302">
+                <img src="http://img.shields.io/badge/yura0302-green?style=social&logo=github"/>
+            </a>
+        </td>
+        <td width="100" align="center">
+            <a href="https://github.com/fnzl54">
+                <img src="http://img.shields.io/badge/fnzl54-green?style=social&logo=github"/>
+            </a>
+        </td>
+        <td width="100" align="center">
+            <a href="https://github.com/hstla">
+                <img src="http://img.shields.io/badge/hstla-green?style=social&logo=github"/>
+            </a>
+        </td>
+         <td width="100" align="center">
+            <a href="https://github.com/Mayreeel">
+                <img src="http://img.shields.io/badge/Mayreeel-green?style=social&logo=github"/>
+            </a>
+        </td>
+     </tr>
+    </tbody>
+</table>
