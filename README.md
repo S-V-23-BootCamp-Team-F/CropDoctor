@@ -207,6 +207,39 @@ docker-compose up —build
 <br>
 <br>
 
+## 🔍 Features
+
+<br>
+
+**회원가입/ 로그인 페이지**
+
+<img  src="https://user-images.githubusercontent.com/97827316/215984078-3cbe440e-c4bc-4ae3-9a2b-662ec2dae079.gif">
+
+JWT토큰을 이용한 회원가입/로그인 페이지이다.
+
+<br>
+<br>
+
+**진단/진단결과 페이지**
+
+<img src="https://user-images.githubusercontent.com/97827316/215984379-20db97b3-e90c-4857-bb46-c457b61b632c.gif">
+
+병해작물 이미지를 선택하여 AI로 진단하는 페이지이며, 병해 작물일 경우 원인과 해결책등을 함께 제공한다.
+
+<br>
+<br>
+
+**히스토리/히스토리삭제**
+
+<img src="https://user-images.githubusercontent.com/97827316/215984492-50f4e265-a738-41a9-8463-532ddb453c68.gif">
+
+로그인 시에만 이용가능한 기능으로 자신이 진단한 작물을 카테고리별로 모아 볼 수 있다. <br>
+또한 히스토리 작물의 상세정보를 확인할 수 있고 이를 삭제할 수 있다.
+
+<br>
+<br>
+<br>
+
 ## 🖥️ Moniterings
 
 <br>
@@ -224,33 +257,7 @@ docker-compose up —build
 <br>
 <br>
 
-## 🔍 Features
-
-<br>
-
-**회원가입/ 로그인 페이지**
-
-<img  src="https://user-images.githubusercontent.com/97827316/215984078-3cbe440e-c4bc-4ae3-9a2b-662ec2dae079.gif">
-
-<br>
-<br>
-
-**진단/진단결과 페이지**
-
-<img src="https://user-images.githubusercontent.com/97827316/215984379-20db97b3-e90c-4857-bb46-c457b61b632c.gif">
-
-<br>
-<br>
-
-**히스토리/히스토리삭제**
-
-<img src="https://user-images.githubusercontent.com/97827316/215984492-50f4e265-a738-41a9-8463-532ddb453c68.gif">
-
-<br>
-<br>
-<br>
-
-## Our Team
+## 👥 Our Team
 
 <table width="1000">
     <thead>
@@ -330,7 +337,6 @@ docker-compose up —build
         <td width="150" align="center">
             Backend<br>
             DevOps<br>
-            AI<br>
         </td>
         <td width="150" align="center">
             Frontend<br>
@@ -376,4 +382,3 @@ docker-compose up —build
      </tr>
     </tbody>
 </table>
-
