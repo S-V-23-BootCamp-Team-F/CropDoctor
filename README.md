@@ -266,8 +266,12 @@ docker-compose up —build
 **Grafana Dashboard & Slack Alert**
 
 <img  src="https://user-images.githubusercontent.com/84130518/216139014-d7f93579-66dc-4ec5-8e1e-664fa5258372.png">
-만약 Storage 용량이 74.9%가 넘으면 Grafana에서 Slack으로 알람을 보낸다.
-<img width = 320 src="https://user-images.githubusercontent.com/84130518/216139064-aadf8f9b-a746-4322-89f8-543cf4c891fa.png">
+
+<br>
+
+만약 Storage 용량이 85%가 넘으면 Grafana에서 Slack으로 알람을 보낸다.
+
+<img width="320" src="https://user-images.githubusercontent.com/83527046/216155592-6f85fc7f-b30a-426e-bdc5-86cdeb763663.png">
 <br>
 
 ## 👥 Our Team
