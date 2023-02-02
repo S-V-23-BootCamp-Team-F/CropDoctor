@@ -277,6 +277,21 @@ docker-compose up —build
 <img width="320" src="https://user-images.githubusercontent.com/83527046/216155592-6f85fc7f-b30a-426e-bdc5-86cdeb763663.png">
 <br>
 
+## Swagger
+
+Frontend와 Backend 통신을 위한 API 문서화는 Swagger를 이용했다.
+<img width="1245" alt="스크린샷 2023-02-01 오후 6 03 44 (1)" src="https://user-images.githubusercontent.com/84130518/216385471-3b8f5d95-b9ca-4705-88df-0426ddba2d8d.png">
+
+## AI
+AI는 YoloV5를 사용했으며, Precision-Confidence Curve과 학습 과정 및 성능은 다음과 같다.
+![그림1](https://user-images.githubusercontent.com/84130518/216386440-c240d681-2f4f-4121-b6da-d630e2d30dbd.png)
+
+![results (1)](https://user-images.githubusercontent.com/84130518/216386411-f00c4c4b-2ebb-49bb-a4fd-82dd63aa1094.png)
+
+다음 사진은 AI가 실제로 분석한 사진들이다.
+![Group 101111](https://user-images.githubusercontent.com/84130518/216389881-90366a8a-afff-4122-8025-f135ce9fa37a.png)
+
+
 ## 👥 Our Team
 
 <table width="1000">
