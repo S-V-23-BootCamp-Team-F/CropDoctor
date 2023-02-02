@@ -271,6 +271,21 @@ If the storage capacity exceeds 85%, Grafana sends an alarm to Slack.
 <img width="320" src="https://user-images.githubusercontent.com/83527046/216155592-6f85fc7f-b30a-426e-bdc5-86cdeb763663.png">
 <br>
 
+
+## Swagger
+
+The use of Swagger for API documentation for Frontend and Backend communication.
+<img width="1245" alt="스크린샷 2023-02-01 오후 6 03 44 (1)" src="https://user-images.githubusercontent.com/84130518/216385471-3b8f5d95-b9ca-4705-88df-0426ddba2d8d.png">
+
+## AI
+AI used YoloV5, and the Precision-Confidence Curve and learning process and performance are as follows.
+![그림1](https://user-images.githubusercontent.com/84130518/216386440-c240d681-2f4f-4121-b6da-d630e2d30dbd.png)
+
+![results (1)](https://user-images.githubusercontent.com/84130518/216386411-f00c4c4b-2ebb-49bb-a4fd-82dd63aa1094.png)
+
+The following photos are actually analyzed by AI.
+![Group 101111](https://user-images.githubusercontent.com/84130518/216389881-90366a8a-afff-4122-8025-f135ce9fa37a.png)
+
 ## 👥 Our Team
 
 <table width="1000">
