@@ -206,7 +206,10 @@ docker-compose up —build
 
 </details>
 <br>
-<br>
+
+## Flowchart
+
+![flowchart drawio (4)](https://user-images.githubusercontent.com/84130518/216246545-9a636dec-960a-4f33-ad8f-dab99aefe2db.png)
 
 ## 🔍 Features
 
